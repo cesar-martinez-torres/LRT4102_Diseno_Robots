@@ -1,0 +1,86 @@
+<robot name="planar_3gdl_robot">
+
+  <material name="blue_link">
+    <color rgba="0.0 0.35 0.9 1.0"/>
+  </material>
+
+  <material name="green_link">
+    <color rgba="0.1 0.7 0.2 1.0"/>
+  </material>
+
+  <material name="orange_link">
+    <color rgba="0.95 0.5 0.05 1.0"/>
+  </material>
+
+  <material name="dark_gray">
+    <color rgba="0.25 0.25 0.25 1.0"/>
+  </material>
+
+  <!-- Base fija -->
+  <link name="link0_passive">
+    <visual>
+      <geometry>
+        <cylinder length="0.08" radius="0.10"/>
+      </geometry>
+      <material name="dark_gray"/>
+    </visual>
+  </link>
+
+  <!-- Eslabon 1 -->
+  <link name="link1">
+    <visual>
+      <origin xyz="0.75 0 0" rpy=" 0 1.57079632679 0"/>
+      <geometry>
+        <cylinder length="1.5" radius="0.05"/>
+      </geometry>
+      <material name="blue_link"/>
+    </visual>
+  </link>
+
+  <joint name="q1" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="link0_passive"/>
+    <child link="link1"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.1416" upper="3.1416" effort="10" velocity="2"/>
+  </joint>
+
+  <!-- Eslabon 2 -->
+  <link name="link2">
+    <visual>
+      <origin xyz="0.60 0 0" rpy="0 1.57079632679 0"/>
+      <geometry>
+        <cylinder length="1.2" radius="0.05"/>
+      </geometry>
+      <material name="green_link"/>
+    </visual>
+  </link>
+
+  <joint name="q2" type="revolute">
+    <origin xyz="1.5 0 0" rpy="0 0 0"/>
+    <parent link="link1"/>
+    <child link="link2"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.1416" upper="3.1416" effort="10" velocity="2"/>
+  </joint>
+
+  <!-- Eslabon 3 -->
+  <link name="link3">
+    <visual>
+      <origin xyz="0.40 0 0" rpy="0 1.57079632679 0"/>
+      <geometry>
+        <cylinder length="0.8" radius="0.05"/>
+      </geometry>
+      <material name="orange_link"/>
+    </visual>
+  </link>
+
+  <joint name="q3" type="revolute">
+    <origin xyz="1.2 0 0" rpy="0 0 0"/>
+    <parent link="link2"/>
+    <child link="link3"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.1416" upper="3.1416" effort="10" velocity="2"/>
+  </joint>
+
+</robot>
